@@ -1,0 +1,11 @@
+cmake_minimum_required(VERSION 3.11)
+ 
+add_subdirectory(chat)
+add_subdirectory(push)
+add_subdirectory(conf)
+add_subdirectory(proto)
+add_subdirectory(net_async)
+add_subdirectory(file_transfer)
+add_subdirectory(asio_async_ssl)
+add_subdirectory(websocket_async)
+add_subdirectory(websocket_async_ssl)

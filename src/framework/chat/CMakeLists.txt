@@ -1,0 +1,26 @@
+cmake_minimum_required(VERSION 3.11)
+
+set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_BUILD_TYPE Release)
+SET(CMAKE_CXX_FLAGS "-std=c++20 -s -Wall -Os")
+
+include(GNUInstallDirs)
+
+include_directories(include)
+include_directories(${PROJECT_BINARY_DIR}/framework/proto)
+include_directories(${PROJECT_SOURCE_DIR}/framework/include)
+include_directories(${PROJECT_SOURCE_DIR}/framework/protocol)
+
+set(PROTO proto)
+set(CLIENT chat_client_async)
+set(SERVER chat_server_async)
+
+find_package(Protobuf REQUIRED)
+
+add_executable(${CLIENT} src/chat_client_async.cpp)
+add_executable(${SERVER} src/chat_server_async.cpp)
+
+target_link_libraries(${CLIENT} pthread ${PROTO} ${PROTOBUF_LIBRARY})
+target_link_libraries(${SERVER} pthread ${PROTO} ${PROTOBUF_LIBRARY})
+
+install(TARGETS ${CLIENT} ${SERVER} DESTINATION ${PROJECT_SOURCE_DIR}/bin)

@@ -1,0 +1,9 @@
+syntax = "proto3";
+package pb;
+
+message login
+{
+    string username = 1;
+    string password = 2;
+    bytes message = 3;
+}
